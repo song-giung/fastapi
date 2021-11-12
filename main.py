@@ -43,8 +43,21 @@ async def get_model(model_name: ModelName):
 
     return {"model_name": model_name, "message": "have some residuals"}
 
+
 # if path parameter containing paths
 # like .. /files/myhome/work/awesome_python.txt
 @app.get('/files/{file_path:path}')
 async def read_file(file_path: str):
     return {"file_path": file_path}
+
+
+fake_items_db = [
+    {"item_name": "foo"},
+    {"item_name": "bar"},
+    {"item_name": "baz"}
+]
+
+
+@app.get('/items/')
+async def read_items(skip: int = 0, limit: int = 0):
+    return fake_items_db[skip:skip + limit]
