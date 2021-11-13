@@ -59,7 +59,7 @@ fake_items_db = [
 
 
 @app.get('/items/')
-async def read_items(q: List[str] = Query(['foo', 'bar'])):
+async def read_items(q: list = Query([])):
     results = {'items': [{'item_id': "Foo"}, {"item_id": "Bar"}]}
     if q:
         results.update({"q": q})
